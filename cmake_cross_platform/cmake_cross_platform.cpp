@@ -10,6 +10,7 @@
 #include <iterator>
 #include <optional>
 #include <vector>
+#include <functional>
 #include <initializer_list>
 
 using namespace std;
@@ -29,7 +30,7 @@ public:
 		auto search = inner->find(key);
 		if (search != inner->end()) {
 			std::cout << "found!" << search->second << "\n";
-			return search->second;
+			return { search->second };
 		}
 		else {
 			return std::nullopt;
@@ -47,7 +48,7 @@ public:
 
 	std::optional<T&> operator[](int i) {
 		if (i < vector<T>::size())
-			return std::optional<T&> { vector<T>[i] };
+			return std::optional<T&> { vector<T>::at(i) };
 		else
 			return std::nullopt;
 	}
@@ -69,7 +70,7 @@ int main()
 	map.insert('c', 10);
 	auto res = map.lookup('c');
 	if (res)
-		std::cout << *res;
+		std::cout << "found!";
 	else
 		std::cout << "not found";
 	std::cout << std::endl;
