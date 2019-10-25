@@ -1,0 +1,1 @@
+# CMake based cross platform C++17 project template
