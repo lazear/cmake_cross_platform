@@ -1,9 +1,5 @@
-﻿// cmake_cross_platform.cpp : Defines the entry point for the application.
-//
-
-#include "cmake_cross_platform.h"
-// ConsoleApplication1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include "cmake_cross_platform.h"
+#include "testfile.h"
 
 #include <iostream>
 #include <map>
@@ -12,6 +8,8 @@
 #include <vector>
 #include <functional>
 #include <initializer_list>
+#include <string>
+
 
 using namespace std;
 
@@ -26,10 +24,9 @@ public:
 		inner->insert({ key, val });
 	}
 
-	std::optional<std::reference_wrapper<V>> lookup(const K& key) {
+	optional<reference_wrapper<V>> lookup(const K& key) {
 		auto search = inner->find(key);
 		if (search != inner->end()) {
-			std::cout << "found!" << search->second << "\n";
 			return { search->second };
 		}
 		else {
@@ -80,5 +77,20 @@ int main()
 	for (auto x : b) {
 		std::cout << x << std::endl;
 	}
-	std::cout << sum(b);
+
+	Test t;
+	t.bar();
+
+	std::string str{ "hello, world" };
+	vector<string> strs;
+	strs.push_back(str);
+	for (string& s : strs) {
+		std::cout << s << '\n';
+	}
+
+	std::cout << str << '\n';;
+	strs.push_back(std::move(str));
+	std::cout << "unspecified behavior! " << str.size() << '\n';
+	str = std::move(strs[1]);
+	std::cout << "unspecified behavior! " << strs.at(1) << '\n';
 }
