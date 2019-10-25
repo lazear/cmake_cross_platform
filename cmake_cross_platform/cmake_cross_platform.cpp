@@ -1,5 +1,6 @@
 ﻿#include "cmake_cross_platform.h"
 #include "testfile.h"
+#include "Either.h"
 
 #include <iostream>
 #include <map>
@@ -80,6 +81,7 @@ int main()
 
 	Test t;
 	t.bar();
+	std::cout << t.get_drops() << std::endl;
 
 	std::string str{ "hello, world" };
 	vector<string> strs;
@@ -93,4 +95,12 @@ int main()
 	std::cout << "unspecified behavior! " << str.size() << '\n';
 	str = std::move(strs[1]);
 	std::cout << "unspecified behavior! " << strs.at(1) << '\n';
+
+	Either<bool, char> ei = Either<bool, char>(false);
+	ei = Either<bool, char>('a');
+
+	if (ei.is_right())
+		std::cout << *ei.right() << '\n';
+
+
 }

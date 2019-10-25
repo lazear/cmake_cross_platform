@@ -7,6 +7,7 @@ public:
 		std::cout << "drop!\n";
 	}
 	void bar();
+	int get_drops();
 private:
 	int drops;
 };

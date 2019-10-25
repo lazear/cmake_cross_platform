@@ -7,6 +7,7 @@ cmake_minimum_required (VERSION 3.8)
 add_executable (cmake_cross_platform 
 	"cmake_cross_platform.cpp" "cmake_cross_platform.h"
 	"testfile.cpp" "testfile.h"
+	"either.cpp" "either.h"
 )
 
 # TODO: Add tests and install targets if needed.
